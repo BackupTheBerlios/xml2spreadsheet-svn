@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Maven">
+  <bannerLeft>
+    <name>XML2SpreadSheet</name>
+    <src>img/xml2spreadsheet.png</src>
+    <href>http://wiztools.org/project/XML2SpreadSheet/</href>
+  </bannerLeft>
+  <bannerRight>
+    <src>http://www.wiztools.org/img/project-logo.png</src>
+  </bannerRight>
+  <body>
+    <links>
+      <item name="WizTools.org" href="http://www.wiztools.org/" />
+    </links>
+
+    <menu name="XML2SpreadSheet">
+      <item name="Home" href="index.html"/>
+      <!--<item name="FAQ" href="faq.html"/>
+      <item name="Forum" href="http://developer.berlios.de/forum/?group_id=6203"/>
+      <item name="Downloads" href="download.html"/>-->
+    </menu>
+    ${reports}
+  </body>
+</project>

@@ -1,0 +1,16 @@
+  ---------
+  XML2SpreadSheet
+  ---------
+  WizTools.org Team
+  ---------
+
+XML2SpreadSheet
+
+* About the Application
+
+  This is a public domain framework wrapper over popular OSS Excel
+  generation APIs for Java. The advantage of using this framework,
+  is that you need not learn the internals of each of these APIs.
+
+  You only need to generate the XML file, from which the Excel file
+  will be generated using the API of choice.
