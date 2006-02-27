@@ -8,6 +8,23 @@
   <name>XML2SpreadSheet</name>
   <url>http://www.wiztools.org/project/XML2SpreadSheet/</url>
 
+  <licenses>
+    <license>
+      <name>License</name>
+      <url>LICENSE.txt</url>
+    </license>
+  </licenses>
+
+  <issueManagement>
+    <url>http://developer.berlios.de/bugs/?group_id=6203</url>
+  </issueManagement>
+
+  <scm>
+    <connection>scm:svn://svn.berlios.de/xml2spreadsheet/trunk</connection>
+    <developerConnection>scm:svn+ssh://developername@svn.berlios.de/svnroot/repos/xml2spreadsheet/trunk</developerConnection>
+    <url>http://svn.berlios.de/wsvn/xml2spreadsheet</url>
+  </scm>
+
   <dependencies>
 
     <dependency>
@@ -16,7 +33,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-
 
     <dependency>
       <groupId>poi</groupId>
@@ -67,10 +83,11 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
       </plugin>
-      <plugin>
+      <!--<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-      </plugin>
+        <version>2.0-beta-3</version>
+      </plugin>-->
     </plugins>
   </reporting>
 </project>
