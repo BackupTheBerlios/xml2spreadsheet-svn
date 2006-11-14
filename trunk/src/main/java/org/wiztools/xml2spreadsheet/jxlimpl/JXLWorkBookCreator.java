@@ -128,6 +128,8 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
     public void setColumnWidth(short column, short width) throws OperationException {
         CellView cv = sheet.getColumnView(column);
         cv.setSize(width);
+        // Yes, only if I give this it works:
+        sheet.setColumnView(column, cv);
     }
     
     public WorkBook getWorkBook() {
