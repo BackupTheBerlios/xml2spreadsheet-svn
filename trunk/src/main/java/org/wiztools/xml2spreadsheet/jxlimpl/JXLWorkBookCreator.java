@@ -6,6 +6,8 @@
 
 package org.wiztools.xml2spreadsheet.jxlimpl;
 
+import jxl.Cell;
+import jxl.CellView;
 import org.wiztools.xml2spreadsheet.WorkBook;
 import org.wiztools.xml2spreadsheet.WorkBookGenerationHandler;
 import org.wiztools.xml2spreadsheet.entity.CellEntity;
@@ -52,8 +54,7 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
         this.baos = new ByteArrayOutputStream();
         try{
             this.workBook = jxl.Workbook.createWorkbook(baos);
-        }
-        catch(IOException ioe){
+        } catch(IOException ioe){
             assert true:"ByteArrayOutputStream cannot throw IOException";
         }
     }
@@ -64,8 +65,8 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
     public void createRow(RowEntity row, int placement) throws OperationException{
         this.row = placement;
     }
-    public void createCell(CellEntity cell, short placement) 
-                    throws OperationException{
+    public void createCell(CellEntity cell, short placement)
+    throws OperationException{
         this.cell = placement;
     }
     
@@ -73,8 +74,7 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
         Label label = new Label(cell, row, data);
         try{
             sheet.addCell(label);
-        }
-        catch(WriteException we){
+        } catch(WriteException we){
             throw new OperationException(we.getMessage());
         }
     }
@@ -82,8 +82,7 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
         Number number = new Number(cell, row, data);
         try{
             sheet.addCell(number);
-        }
-        catch(WriteException we){
+        } catch(WriteException we){
             throw new OperationException(we.getMessage());
         }
     }
@@ -94,8 +93,7 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
         DateTime dt = new DateTime(cell, row, date);
         try{
             sheet.addCell(dt);
-        }
-        catch(WriteException we){
+        } catch(WriteException we){
             throw new OperationException(we.getMessage());
         }
     }
@@ -105,8 +103,7 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
         DateTime dt = new DateTime(cell, row, date);
         try{
             sheet.addCell(dt);
-        }
-        catch(WriteException we){
+        } catch(WriteException we){
             throw new OperationException(we.getMessage());
         }
     }
@@ -114,12 +111,18 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
         
     }
     
-    public void mergeCells(int row1, short col1, int row2, short col2) 
-                    throws OperationException{
+    public void mergeCells(int row1, short col1, int row2, short col2)
+    throws OperationException{
         throw new OperationException("Operation not supported.");
+    }
+    
+    public void setColumnWidth(short column, short width) throws OperationException {
+        CellView cv = sheet.getColumnView(column);
+        cv.setSize(width);
     }
     
     public WorkBook getWorkBook() {
         return new JXLWorkBookAdapter(this.workBook, baos);
     }
+    
 }

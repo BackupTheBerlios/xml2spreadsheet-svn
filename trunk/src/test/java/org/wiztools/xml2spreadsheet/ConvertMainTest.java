@@ -7,6 +7,7 @@
 
 package org.wiztools.xml2spreadsheet;
 
+import java.io.File;
 import junit.framework.*;
 import org.wiztools.xml2spreadsheet.exception.XML2XLSFatalException;
 import org.wiztools.xml2spreadsheet.poiimpl.POIColor;
@@ -39,13 +40,21 @@ public class ConvertMainTest extends TestCase {
     public void testMain() {
         System.out.println("main");
         
-        // TODO: Uses *ix specific hardcoded value
-        // xml2xls.xml
-        // String[] arg = new String[]{"src/test/resources/xml-xls.xml", "/tmp/out.xls"};
-        String[] arg = new String[]{"src/test/resources/xml2xls.xml", "/tmp/out.xls"};
+        String tmpDir = System.getProperty("java.io.tmpdir");
+        
+        String[] arg1 = new String[]{"src/test/resources/xml-xls.xml", 
+                tmpDir + File.separator + "poi-out.xls"};
+        String[] arg2 = new String[]{"src/test/resources/xml2xls.xml",
+                tmpDir + File.separator + "poi-large-out.xls"};
+        String[] arg3 = new String[]{"src/test/resources/jxl_xml-xls.xml",
+                tmpDir + File.separator + "jxl-out.xls"};
         
         try{
-            ConvertMain.main(arg);
+            System.setProperty("xml2xls.impl", "poi");
+            ConvertMain.main(arg1);
+            ConvertMain.main(arg2);
+            System.setProperty("xml2xls.impl", "jxl");
+            ConvertMain.main(arg3);
         }
         catch(Exception e){
             fail("An exception occurred: " + e.getMessage());
