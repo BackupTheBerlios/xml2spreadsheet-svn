@@ -20,16 +20,13 @@ import org.wiztools.xml2spreadsheet.util.StyleRepository;
  */
 public final class POIStyleCreator {
     
-    private static POIStyleCreator styleCreator;
+    private static POIStyleCreator styleCreator = new POIStyleCreator();
     
     /** Creates a new instance of POIStyleCreator */
     private POIStyleCreator() {
     }
     
     public static POIStyleCreator getInstance(){
-        if(styleCreator == null){
-            styleCreator = new POIStyleCreator();
-        }
         return styleCreator;
     }
     
@@ -44,12 +41,13 @@ public final class POIStyleCreator {
         return POIColor.getInstance().getColor(color);
     }
     
-    public HSSFCellStyle getStyle(HSSFWorkbook workBook, String cellStyleVal)
+    public HSSFCellStyle getStyle(final HSSFWorkbook workBook,
+            final String cellStyleVal, final StyleRepository styleRepo)
                         throws OperationException{
         
         String hash = StyleHashCreator.getHash(cellStyleVal);
         // System.out.println("style hash: "+hash);
-        HSSFCellStyle style = StyleRepository.getInstance().get(hash);
+        HSSFCellStyle style = (HSSFCellStyle)styleRepo.get(hash);
         
         if(style != null){
             // System.out.println("Got style from repository for hash: "+hash);
@@ -166,7 +164,7 @@ public final class POIStyleCreator {
             }
         }
         
-        StyleRepository.getInstance().put(hash, style);
+        styleRepo.put(hash, style);
         
         return style;
     }

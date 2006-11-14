@@ -10,7 +10,6 @@
 package org.wiztools.xml2spreadsheet.util;
 
 import java.util.HashMap;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 
 /**
  *
@@ -18,23 +17,18 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
  */
 public class StyleRepository {
     
-    private static StyleRepository psr = new StyleRepository();
-    private HashMap<String, HSSFCellStyle> hm = new HashMap<String, HSSFCellStyle>();
+    private HashMap<String, Object> hm = new HashMap<String, Object>();
     
-    public void put(final String hash, final HSSFCellStyle style){
+    public void put(final String hash, final Object style){
         hm.put(hash, style);
     }
     
-    public HSSFCellStyle get(String hash){
+    public Object get(String hash){
         return hm.get(hash);
     }
     
     /** Creates a new instance of POIStyleRepository */
-    private StyleRepository() {
-    }
-    
-    public static StyleRepository getInstance(){
-        return psr;
+    public StyleRepository() {
     }
     
 }

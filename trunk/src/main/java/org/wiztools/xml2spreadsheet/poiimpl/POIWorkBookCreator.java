@@ -22,6 +22,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.Region;
+import org.wiztools.xml2spreadsheet.util.StyleRepository;
 
 
 /**
@@ -34,6 +35,7 @@ public class POIWorkBookCreator implements WorkBookGenerationHandler{
     private HSSFRow row;
     private HSSFSheet sheet;
     private HSSFWorkbook workBook;
+    private StyleRepository styleRepo;
     
     /** Creates a new instance of POIWorkBookCreator */
     public POIWorkBookCreator() {
@@ -66,7 +68,7 @@ public class POIWorkBookCreator implements WorkBookGenerationHandler{
     
     private HSSFCellStyle getStyle(String cellStyleVal) 
                             throws OperationException{
-        return POIStyleCreator.getInstance().getStyle(workBook, cellStyleVal);
+        return POIStyleCreator.getInstance().getStyle(workBook, cellStyleVal, styleRepo);
     }
     
     public void createCell(final CellEntity cell, final short placement) 
@@ -126,6 +128,10 @@ public class POIWorkBookCreator implements WorkBookGenerationHandler{
                             throws OperationException{
         HSSFWorkbook hworkBook = new HSSFWorkbook();
         this.workBook = hworkBook;
+        
+        // A style created on a workbook can be used across
+        // all sheets.
+        this.styleRepo = new StyleRepository();
     }
     
     public WorkBook getWorkBook() {
