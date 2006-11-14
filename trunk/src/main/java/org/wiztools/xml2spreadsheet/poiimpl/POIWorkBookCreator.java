@@ -100,6 +100,11 @@ public class POIWorkBookCreator implements WorkBookGenerationHandler{
                 col2));
     }
     
+    public void setColumnWidth(final short column, final short width) 
+            throws OperationException{
+        this.sheet.setColumnWidth(column, width);
+    }
+    
     public void createSheet(final SheetEntity sheet)
                             throws OperationException{
         Map<String, String> attributes = sheet.getAttributes();

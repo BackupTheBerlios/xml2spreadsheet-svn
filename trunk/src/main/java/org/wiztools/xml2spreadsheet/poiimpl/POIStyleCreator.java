@@ -44,7 +44,17 @@ public final class POIStyleCreator {
     
     public HSSFCellStyle getStyle(HSSFWorkbook workBook, String cellStyleVal)
                         throws OperationException{
-        HSSFCellStyle style = workBook.createCellStyle();
+        
+        String hash = POIStyleHashCreator.getHash(cellStyleVal);
+        // System.out.println("style hash: "+hash);
+        HSSFCellStyle style = POIStyleRepository.getInstance().get(hash);
+        
+        if(style != null){
+            // System.out.println("Got style from repository for hash: "+hash);
+            return style;
+        }
+        
+        style = workBook.createCellStyle();
         String[] arr = cellStyleVal.split("\\s*;\\s*");
         for(int i=0; i<arr.length; i++){
             String[] tarr = arr[i].split("\\s*:\\s*");
@@ -153,6 +163,9 @@ public final class POIStyleCreator {
                 }
             }
         }
+        
+        POIStyleRepository.getInstance().put(hash, style);
+        
         return style;
     }
 }

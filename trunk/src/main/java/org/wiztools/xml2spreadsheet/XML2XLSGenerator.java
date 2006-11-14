@@ -221,6 +221,29 @@ public class XML2XLSGenerator {
                 (short)regions[3]);
     }
     
+    private void processColumnWidth(final Element e)
+                throws XML2XLSFatalException{
+        String columnStr = e.getAttributeValue("column");
+        String widthStr = e.getAttributeValue("width");
+        if(columnStr == null || widthStr == null){
+            throw new XML2XLSFatalException(
+                    "<column-width> element should have both the attributes: column and width");
+        }
+        short column = -1;
+        short width = -1;
+        try{
+            column = Short.parseShort(columnStr);
+            width = Short.parseShort(widthStr);
+            if(column < 0 || width < 0){
+                throw new XML2XLSFatalException("column or width attribute cannot be negative");
+            }
+        }
+        catch(NumberFormatException nfe){
+            throw new XML2XLSFatalException("column and width attribute should be numbers");
+        }
+        wbgh.setColumnWidth(column, width);
+    }
+    
     private void processSheet(final Element esheet) 
                     throws XML2XLSFatalException{
         List<Element> l = esheet.getChildren();
@@ -235,6 +258,9 @@ public class XML2XLSGenerator {
             }
             else if("merge".equals(name)){
                 processMergeRegion(e);
+            }
+            else if("column-width".equals(name)){
+                processColumnWidth(e);
             }
             else{
                 throw new XMLInvalidNestedElementException("sheet", name);

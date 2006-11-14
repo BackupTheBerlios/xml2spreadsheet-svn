@@ -34,4 +34,6 @@ public interface WorkBookGenerationHandler extends WorkBookCreator{
     
     public void mergeCells(int row1, short col1, int row2, short col2) 
                     throws OperationException;
+    
+    public void setColumnWidth(short column, short width) throws OperationException;
 }
