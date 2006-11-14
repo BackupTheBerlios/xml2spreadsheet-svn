@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package org.wiztools.xml2spreadsheet.poiimpl;
+package org.wiztools.xml2spreadsheet.util;
 
 import java.util.HashMap;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -16,9 +16,9 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
  *
  * @author subhash
  */
-public class POIStyleRepository {
+public class StyleRepository {
     
-    private static POIStyleRepository psr = new POIStyleRepository();
+    private static StyleRepository psr = new StyleRepository();
     private HashMap<String, HSSFCellStyle> hm = new HashMap<String, HSSFCellStyle>();
     
     public void put(final String hash, final HSSFCellStyle style){
@@ -30,10 +30,10 @@ public class POIStyleRepository {
     }
     
     /** Creates a new instance of POIStyleRepository */
-    private POIStyleRepository() {
+    private StyleRepository() {
     }
     
-    public static POIStyleRepository getInstance(){
+    public static StyleRepository getInstance(){
         return psr;
     }
     

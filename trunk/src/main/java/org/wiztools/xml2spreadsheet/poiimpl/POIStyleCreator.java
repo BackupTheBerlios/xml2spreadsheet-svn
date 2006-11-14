@@ -10,6 +10,8 @@ import org.wiztools.xml2spreadsheet.exception.OperationException;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.wiztools.xml2spreadsheet.util.StyleHashCreator;
+import org.wiztools.xml2spreadsheet.util.StyleRepository;
 
 
 /**
@@ -45,9 +47,9 @@ public final class POIStyleCreator {
     public HSSFCellStyle getStyle(HSSFWorkbook workBook, String cellStyleVal)
                         throws OperationException{
         
-        String hash = POIStyleHashCreator.getHash(cellStyleVal);
+        String hash = StyleHashCreator.getHash(cellStyleVal);
         // System.out.println("style hash: "+hash);
-        HSSFCellStyle style = POIStyleRepository.getInstance().get(hash);
+        HSSFCellStyle style = StyleRepository.getInstance().get(hash);
         
         if(style != null){
             // System.out.println("Got style from repository for hash: "+hash);
@@ -164,7 +166,7 @@ public final class POIStyleCreator {
             }
         }
         
-        POIStyleRepository.getInstance().put(hash, style);
+        StyleRepository.getInstance().put(hash, style);
         
         return style;
     }

@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package org.wiztools.xml2spreadsheet.poiimpl;
+package org.wiztools.xml2spreadsheet.util;
 
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ import java.util.Arrays;
  * The hash is nothing but the key/value pairs organized in a sorted format.
  * @author subhash
  */
-public class POIStyleHashCreator {
+public class StyleHashCreator {
     
     public static String getHash(final String cellStyleVal){
         String[] arr = cellStyleVal.split("\\s*;\\s*");
@@ -40,7 +40,7 @@ public class POIStyleHashCreator {
     }
     
     /** Creates a new instance of POIStyleHashCreator */
-    private POIStyleHashCreator() {
+    private StyleHashCreator() {
     }
     
 }
