@@ -1,6 +1,7 @@
 <workbook>
 	<sheet name="wiz">
         <column-width column="1" width="20000"/>
+        <merge region="1,1,1,2" />
 		<row placement="0">
 			<cell placement="0" style="align:center; text-decoration: bold; valign: center ; border: dotted">
 				<text>My Heading</text>

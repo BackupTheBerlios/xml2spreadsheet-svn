@@ -122,7 +122,12 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
     
     public void mergeCells(int row1, short col1, int row2, short col2)
     throws OperationException{
-        throw new OperationException("Operation not supported.");
+        //throw new OperationException("Operation not supported.");
+        try{
+            sheet.mergeCells(col1, row1, col2, row2);
+        } catch(WriteException we){
+            throw new OperationException(we.getMessage());
+        }
     }
     
     public void setColumnWidth(short column, short width) throws OperationException {
