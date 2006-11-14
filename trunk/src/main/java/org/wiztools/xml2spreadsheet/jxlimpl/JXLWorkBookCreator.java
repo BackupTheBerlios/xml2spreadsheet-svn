@@ -6,6 +6,7 @@
 
 package org.wiztools.xml2spreadsheet.jxlimpl;
 
+import java.util.Map;
 import jxl.Cell;
 import jxl.CellView;
 import org.wiztools.xml2spreadsheet.WorkBook;
@@ -59,7 +60,15 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
         }
     }
     public void createSheet(SheetEntity sheet) throws OperationException{
-        this.sheet = workBook.createSheet("Sheet "+(sheetCount+1), sheetCount);
+        Map<String, String> attributes = sheet.getAttributes();
+        String name = null;
+        if(attributes != null){
+            name = attributes.get("name");
+        }
+        if(name == null){
+            name = "Sheet " + (sheetCount + 1);
+        }
+        this.sheet = workBook.createSheet(name, sheetCount);
         sheetCount++;
     }
     public void createRow(RowEntity row, int placement) throws OperationException{

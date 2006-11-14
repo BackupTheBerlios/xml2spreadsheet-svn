@@ -1,5 +1,6 @@
 <workbook>
 	<sheet name="wiz">
+        <column-width column="1" width="23"/>
 		<row placement="0">
 			<cell placement="0" style="align:center; text-decoration: bold; valign: center ; border: dotted">
 				<text>My Heading</text>
