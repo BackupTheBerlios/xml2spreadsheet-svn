@@ -39,8 +39,8 @@ public class XML2XLSGenerator {
     public XML2XLSGenerator() {
     }
     
-    private int getIntFromStr(final String str) 
-            throws IllegalArgumentException{
+    private int getIntFromStr(final String str)
+    throws IllegalArgumentException{
         try{
             int i = Integer.parseInt(str);
             if(i<0){
@@ -48,48 +48,45 @@ public class XML2XLSGenerator {
                         "Illegal attribute value: "+i);
             }
             return i;
-        }
-        catch(NumberFormatException nfe){
+        } catch(NumberFormatException nfe){
             throw new IllegalArgumentException(
-                        "Illegal attribute value: "+str);
+                    "Illegal attribute value: "+str);
         }
     }
     
-    private Date getDate(final String date, final String format) 
-            throws XML2XLSFatalException{
+    private Date getDate(final String date, final String format)
+    throws XML2XLSFatalException{
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         try{
             return sdf.parse(date);
-        }
-        catch(ParseException pe){
+        } catch(ParseException pe){
             throw new XML2XLSFatalException(
                     "Date format ("+format+") conversion failed: "+date, pe);
         }
     }
     
     private Calendar getCalendar(final String date, final String format)
-            throws XML2XLSFatalException{
+    throws XML2XLSFatalException{
         Date dt = getDate(date, format);
         Calendar cal = Calendar.getInstance();
         cal.setTime(dt);
         return cal;
     }
     
-    private Document getDocument(final InputStream is) 
-            throws IOException, XML2XLSFatalException{
+    private Document getDocument(final InputStream is)
+    throws IOException, XML2XLSFatalException{
         SAXBuilder builder = new SAXBuilder();
         Document doc;
         try{
             doc = builder.build(is);
-        }
-        catch(JDOMException je){
+        } catch(JDOMException je){
             throw new XML2XLSFatalException("", je);
         }
         return doc;
     }
     
-    private void processCell(final Element ecell) 
-                        throws XML2XLSFatalException{
+    private void processCell(final Element ecell)
+    throws XML2XLSFatalException{
         List<Element> l = ecell.getChildren();
         if(l.size()>1){
             throw new XMLSyntaxException(
@@ -101,29 +98,25 @@ public class XML2XLSGenerator {
             CellEntity cell = new CellEntity();
             if("text".equals(name)){
                 wbgh.setCellValue(e.getText());
-            }
-            else if("number".equals(name)){
+            } else if("number".equals(name)){
                 String doubleStr = e.getTextTrim();
                 double d = -1;
                 try{
                     d = Double.parseDouble(doubleStr);
-                }
-                catch(NumberFormatException nfe){
+                } catch(NumberFormatException nfe){
                     throw new XML2XLSFatalException(
                             "<number> cell value is not valid double: "
                             + doubleStr, nfe);
                 }
                 wbgh.setCellValue(d);
-            }
-            else if("formula".equals(name)){
+            } else if("formula".equals(name)){
                 String formula = e.getTextTrim();
                 if(formula == null || "".equals(formula)){
                     throw new XML2XLSFatalException(
                             "element <formula> cannot be empty");
                 }
                 wbgh.setCellFormula(formula);
-            }
-            else if("date".equals(name)){
+            } else if("date".equals(name)){
                 String format = e.getAttributeValue("format");
                 if(format == null){
                     throw new XML2XLSFatalException(
@@ -131,8 +124,7 @@ public class XML2XLSGenerator {
                             + " attribute specified");
                 }
                 wbgh.setCellValue(getDate(e.getTextTrim(), format));
-            }
-            else if("calendar".equals(name)){
+            } else if("calendar".equals(name)){
                 String format = e.getAttributeValue("format");
                 if(format == null){
                     throw new XML2XLSFatalException(
@@ -140,31 +132,27 @@ public class XML2XLSGenerator {
                             + " attribute specified");
                 }
                 wbgh.setCellValue(getCalendar(e.getTextTrim(), format));
-            }
-            else if("boolean".equals(name)){
+            } else if("boolean".equals(name)){
                 String value = e.getTextTrim();
                 boolean bolVal;
                 if("true".equals(value)){
                     bolVal = true;
-                }
-                else if("false".equals(value)){
+                } else if("false".equals(value)){
                     bolVal = false;
-                }
-                else{
+                } else{
                     throw new XML2XLSFatalException(
                             "<boolean> cell can have only true/false as value. "
                             + "The present value: " + value);
                 }
                 wbgh.setCellValue(bolVal);
-            }
-            else{
+            } else{
                 throw new XMLInvalidNestedElementException("cell", name);
             }
         }
     }
     
-    private void processRow(final Element erow) 
-                        throws XML2XLSFatalException{
+    private void processRow(final Element erow)
+    throws XML2XLSFatalException{
         List<Element> l = erow.getChildren();
         for(Element e: l){
             String name = e.getName();
@@ -180,15 +168,14 @@ public class XML2XLSGenerator {
                 }
                 wbgh.createCell(cell, (short)placement);
                 processCell(e);
-            }
-            else{
+            } else{
                 throw new XMLInvalidNestedElementException("row", name);
             }
         }
     }
     
     private void processMergeRegion(final Element emerge)
-                        throws XML2XLSFatalException{
+    throws XML2XLSFatalException{
         String reg = emerge.getAttributeValue("region");
         if(reg == null){
             throw new XML2XLSFatalException(
@@ -209,20 +196,19 @@ public class XML2XLSGenerator {
                     throw new XML2XLSFatalException(
                             "region attribute cannot have -ve value: "+reg);
                 }
-            }
-            catch(NumberFormatException nfe){
+            } catch(NumberFormatException nfe){
                 throw new XML2XLSFatalException(
                         "region attribute has non-number value: "+reg);
             }
         }
-        wbgh.mergeCells(regions[0], 
-                (short)regions[1], 
-                regions[2], 
+        wbgh.mergeCells(regions[0],
+                (short)regions[1],
+                regions[2],
                 (short)regions[3]);
     }
     
     private void processColumnWidth(final Element e)
-                throws XML2XLSFatalException{
+    throws XML2XLSFatalException{
         String columnStr = e.getAttributeValue("column");
         String widthStr = e.getAttributeValue("width");
         if(columnStr == null || widthStr == null){
@@ -237,15 +223,14 @@ public class XML2XLSGenerator {
             if(column < 0 || width < 0){
                 throw new XML2XLSFatalException("column or width attribute cannot be negative");
             }
-        }
-        catch(NumberFormatException nfe){
+        } catch(NumberFormatException nfe){
             throw new XML2XLSFatalException("column and width attribute should be numbers");
         }
         wbgh.setColumnWidth(column, width);
     }
     
-    private void processSheet(final Element esheet) 
-                    throws XML2XLSFatalException{
+    private void processSheet(final Element esheet)
+    throws XML2XLSFatalException{
         List<Element> l = esheet.getChildren();
         for(Element e: l){
             String name = e.getName();
@@ -255,21 +240,18 @@ public class XML2XLSGenerator {
                 RowEntity row = new RowEntity();
                 wbgh.createRow(row, placement);
                 processRow(e);
-            }
-            else if("merge".equals(name)){
+            } else if("merge".equals(name)){
                 processMergeRegion(e);
-            }
-            else if("column-width".equals(name)){
+            } else if("column-width".equals(name)){
                 processColumnWidth(e);
-            }
-            else{
+            } else{
                 throw new XMLInvalidNestedElementException("sheet", name);
             }
         }
     }
     
-    public void parse(final WorkBookGenerationHandler wbgh, final InputStream is) 
-                        throws IOException, XML2XLSFatalException{
+    public void parse(final WorkBookGenerationHandler wbgh, final InputStream is)
+    throws IOException, XML2XLSFatalException{
         this.wbgh = wbgh;
         Document doc = getDocument(is);
         Element root = doc.getRootElement();
@@ -289,15 +271,14 @@ public class XML2XLSGenerator {
                     m.put("name", namea);
                     sheet.setAttributes(m);
                     wbgh.createSheet(sheet);
-                }
-                else{
+                } else{
                     wbgh.createSheet(sheet);
                 }
                 processSheet(e);
-            }
-            else{
+            } else{
                 throw new XMLInvalidNestedElementException("workbook", name);
             }
         }
     }
 }
+

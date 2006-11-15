@@ -11,7 +11,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
 
 /**
  *
@@ -23,7 +22,7 @@ public class JXLWorkBookAdapter implements WorkBook{
     private ByteArrayOutputStream baos;
     
     /** Creates a new instance of JXLWorkBookAdapter */
-    public JXLWorkBookAdapter(WritableWorkbook workBook, 
+    public JXLWorkBookAdapter(WritableWorkbook workBook,
             ByteArrayOutputStream baos) {
         this.workBook = workBook;
         this.baos = baos;

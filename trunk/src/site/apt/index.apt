@@ -14,3 +14,9 @@ XML2SpreadSheet
 
   You only need to generate the XML file, from which the Excel file
   will be generated using the API of choice.
+
+* Sample XML File
+
+  Note that inspite of best efforts, I have not been able to create
+  a XML format which is totally independent of the underlying Excel
+  generation implementation.

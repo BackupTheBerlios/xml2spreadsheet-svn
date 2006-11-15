@@ -41,21 +41,18 @@ public class ConvertMain {
             if("-h".equals(arg[0]) || "--help".equals(arg[0])){
                 print(System.out, getHelpText());
                 System.exit(0);
-            }
-            else if("--colors".equals(arg[0])){
+            } else if("--colors".equals(arg[0])){
                 print(System.out, "The colors supported: \n");
                 Collection<String> colors = POIColor.getInstance().getSupportedColors();
                 for(String color: colors){
                     print(System.out, color);
                 }
                 System.exit(0);
-            }
-            else{
+            } else{
                 print(System.err, getHelpText());
                 System.exit(-1);
             }
-        }
-        else if(arg.length != 2){
+        } else if(arg.length != 2){
             print(System.err, getHelpText());
             System.exit(-1);
         }
@@ -67,18 +64,16 @@ public class ConvertMain {
             gen.parse((WorkBookGenerationHandler)wbc, new FileInputStream(arg[0]));
             WorkBook workBook = wbc.getWorkBook();
             workBook.write(new FileOutputStream(arg[1]));
-        }
-        catch(FileNotFoundException fnfe){
+        } catch(FileNotFoundException fnfe){
             print(System.err, "FileNotFoundException occurred!");
             fnfe.printStackTrace(System.err);
-        }
-        catch(IOException ioe){
+        } catch(IOException ioe){
             print(System.err, "IOException occurred!");
             ioe.printStackTrace(System.err);
-        }
-        catch(XML2XLSFatalException e){
+        } catch(XML2XLSFatalException e){
             print(System.err, "Error occurred: "+e.getMessage());
             e.printStackTrace(System.err);
         }
     }
 }
+

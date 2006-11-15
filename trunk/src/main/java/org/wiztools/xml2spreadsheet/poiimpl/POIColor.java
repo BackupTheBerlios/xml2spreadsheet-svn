@@ -63,3 +63,4 @@ public final class POIColor {
         return (short)i.intValue();
     }
 }
+

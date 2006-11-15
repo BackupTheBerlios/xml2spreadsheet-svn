@@ -6,8 +6,7 @@
 
 package org.wiztools.xml2spreadsheet;
 
-import org.wiztools.xml2spreadsheet.exception.XML2XLSFatalException;
-import java.io.InputStream;
+import org.wiztools.xml2spreadsheet.WorkBook;
 
 /**
  *

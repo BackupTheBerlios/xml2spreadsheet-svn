@@ -7,7 +7,6 @@
 package org.wiztools.xml2spreadsheet.jxlimpl;
 
 import java.util.Map;
-import jxl.Cell;
 import jxl.CellView;
 import org.wiztools.xml2spreadsheet.WorkBook;
 import org.wiztools.xml2spreadsheet.WorkBookGenerationHandler;
@@ -17,20 +16,15 @@ import org.wiztools.xml2spreadsheet.entity.SheetEntity;
 import org.wiztools.xml2spreadsheet.entity.WorkBookEntity;
 import org.wiztools.xml2spreadsheet.exception.OperationException;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
-import jxl.Workbook;
-import jxl.format.CellFormat;
 import jxl.write.DateTime;
 import jxl.write.Label;
 import jxl.write.Number;
-import jxl.write.WritableCell;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-import jxl.write.biff.WritableWorkbookImpl;
 
 /**
  *
