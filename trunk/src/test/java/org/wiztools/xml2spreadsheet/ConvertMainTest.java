@@ -33,6 +33,15 @@ public class ConvertMainTest extends TestCase {
 
     protected void tearDown() throws Exception {
     }
+    
+    private String[] getFolder(File file, String impl){
+        String path = file.getAbsolutePath();
+        int i = path.lastIndexOf(File.separatorChar);
+        String fileName = path.substring(i+1);
+        String[] arr = new String[]{path, System.getProperty("java.io.tmpdir")
+                + File.separator + impl + "-" + fileName + ".xls"};
+        return arr;
+    }
 
     /**
      * Test of main method, of class org.wiztools.xml2spreadsheet.ConvertMain.
@@ -40,21 +49,26 @@ public class ConvertMainTest extends TestCase {
     public void testMain() {
         System.out.println("main");
         
-        String tmpDir = System.getProperty("java.io.tmpdir");
-        
-        String[] arg1 = new String[]{"src/test/resources/poi.xml", 
-                tmpDir + File.separator + "poi-out.xls"};
-        String[] arg2 = new String[]{"src/test/resources/poi_large.xml",
-                tmpDir + File.separator + "poi-large-out.xls"};
-        String[] arg3 = new String[]{"src/test/resources/jxl.xml",
-                tmpDir + File.separator + "jxl-out.xls"};
-        
         try{
+            File dir = new File("src/test/resources");
+            File[] arr = dir.listFiles();
+            
             System.setProperty("xml2xls.impl", "poi");
-            ConvertMain.main(arg1);
-            ConvertMain.main(arg2);
+            for(File file: arr){
+                String[] str_arr = getFolder(file, "poi");
+                if(str_arr[1].matches(".*\\.xml.xls")){
+                    System.out.println("== Running For POI: " + str_arr[1] + " ==");
+                    ConvertMain.main(str_arr);
+                }
+            }
             System.setProperty("xml2xls.impl", "jxl");
-            ConvertMain.main(arg3);
+            for(File file: arr){
+                String[] str_arr = getFolder(file, "jxl");
+                if(str_arr[1].matches(".*\\.xml.xls")){
+                    System.out.println("== Running For JXL: " + str_arr[1] + " ==");
+                    ConvertMain.main(str_arr);
+                }
+            }
         }
         catch(Exception e){
             fail("An exception occurred: " + e.getMessage());
