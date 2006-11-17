@@ -71,8 +71,8 @@ public class ConvertMainTest extends TestCase {
             }
         }
         catch(Exception e){
-            fail("An exception occurred: " + e.getMessage());
             e.printStackTrace();
+            fail("An exception occurred: " + e.getMessage());
         }
         
     }
