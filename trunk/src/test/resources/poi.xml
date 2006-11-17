@@ -9,7 +9,7 @@
             </cell>
         </row>
         <row placement="2">
-            <cell placement="0" style="background:aqua; color: dark_red; align: center ; border : double">
+            <cell placement="0" style="color: dark_red; background:aqua; align: center ; border : double">
                 <text>Hello World!</text>
             </cell>
             <cell placement="2">

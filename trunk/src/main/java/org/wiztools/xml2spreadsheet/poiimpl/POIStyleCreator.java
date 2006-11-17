@@ -6,6 +6,7 @@
 
 package org.wiztools.xml2spreadsheet.poiimpl;
 
+import org.apache.poi.hssf.util.HSSFColor;
 import org.wiztools.xml2spreadsheet.exception.OperationException;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -64,8 +65,8 @@ public final class POIStyleCreator {
             String key = tarr[0];
             String val = tarr[1];
             if("background".equals(key)){
-                // style.setFillBackgroundColor(HSSFColor.BLACK.index);
-                style.setFillForegroundColor(getColor(val));
+                style.setFillBackgroundColor(getColor(val));
+                //style.setFillForegroundColor(getColor(val));
             }
             else if("color".equals(key)){
                 HSSFFont font = workBook.createFont();
