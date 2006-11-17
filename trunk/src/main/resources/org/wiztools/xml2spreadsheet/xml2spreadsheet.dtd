@@ -26,7 +26,7 @@
 
 <!ELEMENT sheet ( column-width | merge | row )* >
 <!ATTLIST sheet col-width CDATA #IMPLIED >
-<!ATTLIST sheet name NMTOKEN #IMPLIED >
+<!ATTLIST sheet name CDATA #IMPLIED >
 <!ATTLIST sheet row-width CDATA #IMPLIED >
 
 <!ELEMENT text ( #PCDATA ) >
