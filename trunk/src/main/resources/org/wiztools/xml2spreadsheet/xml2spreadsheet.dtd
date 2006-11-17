@@ -1,0 +1,35 @@
+<!ELEMENT boolean ( #PCDATA ) >
+
+<!ELEMENT calendar ( #PCDATA ) >
+<!ATTLIST calendar format NMTOKEN #REQUIRED >
+
+<!ELEMENT cell ( boolean | calendar | date | formula | number | text )* >
+<!ATTLIST cell placement NMTOKEN #REQUIRED >
+<!ATTLIST cell style CDATA #IMPLIED >
+
+<!ELEMENT column-width EMPTY >
+<!ATTLIST column-width column NMTOKEN #REQUIRED >
+<!ATTLIST column-width width NMTOKEN #REQUIRED >
+
+<!ELEMENT date ( #PCDATA ) >
+<!ATTLIST date format NMTOKEN #REQUIRED >
+
+<!ELEMENT formula ( #PCDATA ) >
+
+<!ELEMENT merge EMPTY >
+<!ATTLIST merge region CDATA #REQUIRED >
+
+<!ELEMENT number ( #PCDATA ) >
+
+<!ELEMENT row ( cell+ ) >
+<!ATTLIST row placement NMTOKEN #REQUIRED >
+
+<!ELEMENT sheet ( column-width | merge | row )* >
+<!ATTLIST sheet col-width CDATA #IMPLIED >
+<!ATTLIST sheet name NMTOKEN #IMPLIED >
+<!ATTLIST sheet row-width CDATA #IMPLIED >
+
+<!ELEMENT text ( #PCDATA ) >
+
+<!ELEMENT workbook ( sheet+ ) >
+
