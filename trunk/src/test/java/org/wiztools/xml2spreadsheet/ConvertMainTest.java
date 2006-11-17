@@ -42,11 +42,11 @@ public class ConvertMainTest extends TestCase {
         
         String tmpDir = System.getProperty("java.io.tmpdir");
         
-        String[] arg1 = new String[]{"src/test/resources/xml-xls.xml", 
+        String[] arg1 = new String[]{"src/test/resources/poi.xml", 
                 tmpDir + File.separator + "poi-out.xls"};
-        String[] arg2 = new String[]{"src/test/resources/xml2xls.xml",
+        String[] arg2 = new String[]{"src/test/resources/poi_large.xml",
                 tmpDir + File.separator + "poi-large-out.xls"};
-        String[] arg3 = new String[]{"src/test/resources/jxl_xml-xls.xml",
+        String[] arg3 = new String[]{"src/test/resources/jxl.xml",
                 tmpDir + File.separator + "jxl-out.xls"};
         
         try{
