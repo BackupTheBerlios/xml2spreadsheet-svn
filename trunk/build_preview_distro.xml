@@ -1,0 +1,8 @@
+<project name="xml2spreadsheet" default="zip">
+  <target name="zip">
+    <zip destfile="xml2spreadsheet-tech_preview.zip">
+      <fileset dir="target" includes="XML2SpreadSheet-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
+      <fileset dir="src/test/resources"/>
+    </zip>
+  </target>
+</project>
