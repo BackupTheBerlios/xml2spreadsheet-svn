@@ -15,9 +15,8 @@
 
     <menu name="XML2SpreadSheet">
       <item name="Home" href="index.html"/>
-      <!--<item name="FAQ" href="faq.html"/>
       <item name="Forum" href="http://developer.berlios.de/forum/?group_id=6203"/>
-      <item name="Downloads" href="download.html"/>-->
+      <item name="Downloads" href="download.html"/>
     </menu>
     ${reports}
   </body>
