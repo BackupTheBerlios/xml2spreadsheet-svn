@@ -18,6 +18,16 @@
     <issueManagement>
         <url>http://developer.berlios.de/bugs/?group_id=6203</url>
     </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+          <name>Dev List</name>
+          <subscribe>Xml2spreadsheet-dev-request@lists.berlios.de</subscribe>
+          <unsubscribe>Xml2spreadsheet-dev-request@lists.berlios.de</unsubscribe>
+          <post>xml2spreadsheet-dev@lists.berlios.de</post>
+          <archive>https://lists.berlios.de/pipermail/xml2spreadsheet-dev/</archive>
+        </mailingList>
+    </mailingLists>
     
     <scm>
         <connection>scm:svn://svn.berlios.de/xml2spreadsheet/trunk</connection>
