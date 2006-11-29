@@ -21,11 +21,11 @@
 
     <mailingLists>
         <mailingList>
-          <name>Dev List</name>
-          <subscribe>Xml2spreadsheet-dev-request@lists.berlios.de</subscribe>
-          <unsubscribe>Xml2spreadsheet-dev-request@lists.berlios.de</unsubscribe>
-          <post>xml2spreadsheet-dev@lists.berlios.de</post>
-          <archive>https://lists.berlios.de/pipermail/xml2spreadsheet-dev/</archive>
+            <name>Dev List</name>
+            <subscribe>Xml2spreadsheet-dev-request@lists.berlios.de</subscribe>
+            <unsubscribe>Xml2spreadsheet-dev-request@lists.berlios.de</unsubscribe>
+            <post>xml2spreadsheet-dev@lists.berlios.de</post>
+            <archive>https://lists.berlios.de/pipermail/xml2spreadsheet-dev/</archive>
         </mailingList>
     </mailingLists>
     
