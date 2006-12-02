@@ -63,8 +63,10 @@ XML2SpreadSheet
 * API Usage
 
 ---
+  import org.wiztools.xml2spreadsheet.XML2SpreadSheet;
+  ...
   try{
-      org.wiztools.xml2spreadsheet.XML2SpreadSheet.convert(java.io.InputStream in,
+      XML2SpreadSheet.convert(java.io.InputStream in,
               java.io.OutputStream out);
   } catch(FileNotFoundException fnfe){
       ...
