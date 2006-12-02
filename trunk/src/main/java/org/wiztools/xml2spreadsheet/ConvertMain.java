@@ -6,6 +6,7 @@
 
 package org.wiztools.xml2spreadsheet;
 
+import java.util.ResourceBundle;
 import org.wiztools.xml2spreadsheet.exception.XML2XLSFatalException;
 import org.wiztools.xml2spreadsheet.poiimpl.POIColor;
 import java.io.FileInputStream;
@@ -22,14 +23,14 @@ import java.util.Collection;
  */
 public class ConvertMain {
     
+    private static ResourceBundle rb = ResourceBundle.getBundle("org.wiztools.xml2spreadsheet.message");
+    
     private static void print(PrintStream ps, String msg){
         ps.println(msg);
     }
     
     private static String getHelpText(){
-        String help = "Give following arguments:\n"
-                + "\t1. XML input filename\n"
-                + "\t2. XLS output filename\n";
+        String help = rb.getString("msg.Give_following_arguments");
         return help;
     }
     
@@ -42,7 +43,7 @@ public class ConvertMain {
                 print(System.out, getHelpText());
                 System.exit(0);
             } else if("--colors".equals(arg[0])){
-                print(System.out, "The colors supported: \n");
+                print(System.out, rb.getString("msg.The_colors_supported"));
                 Collection<String> colors = POIColor.getInstance().getSupportedColors();
                 for(String color: colors){
                     print(System.out, color);
@@ -61,13 +62,13 @@ public class ConvertMain {
             XML2SpreadSheet.convert(new FileInputStream(arg[0]),
                     new FileOutputStream(arg[1]));
         } catch(FileNotFoundException fnfe){
-            print(System.err, "FileNotFoundException occurred!");
+            print(System.err, rb.getString("err.FileNotFoundException"));
             fnfe.printStackTrace(System.err);
         } catch(IOException ioe){
-            print(System.err, "IOException occurred!");
+            print(System.err, rb.getString("err.IOException"));
             ioe.printStackTrace(System.err);
         } catch(XML2XLSFatalException e){
-            print(System.err, "Error occurred: "+e.getMessage());
+            print(System.err, rb.getString("err.XML2XLSFatalException")+e.getMessage());
             e.printStackTrace(System.err);
         }
     }
