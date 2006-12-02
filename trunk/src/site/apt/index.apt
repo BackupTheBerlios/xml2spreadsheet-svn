@@ -49,3 +49,29 @@ XML2SpreadSheet
     </sheet>
 </workbook>
 ---
+
+* Command-line Usage
+
+  In the command-line, give this command:
+
+  $ java -jar -Dxml2xls.impl=jxl XML2SpreadSheet-VER-jar-with-dependencies.jar jxl.xml out.xls
+
+  or
+
+  $ java -jar -Dxml2xls.impl=poi XML2SpreadSheet-VER-jar-with-dependencies.jar  poi.xml out.xls
+
+* API Usage
+
+---
+  try{
+      XML2SpreadSheet.convert(java.io.InputStream in,
+              java.io.OutputStream out);
+  } catch(FileNotFoundException fnfe){
+      ...
+  } catch(IOException ioe){
+      ...
+  } catch(XML2XLSFatalException e){
+      ...
+  }
+---
+
