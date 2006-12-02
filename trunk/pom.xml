@@ -35,6 +35,49 @@
         <url>http://svn.berlios.de/wsvn/xml2spreadsheet</url>
     </scm>
 
+    <developers>
+        <developer>
+            <id>subwiz</id>
+            <name>Subhash Chandran S</name>
+            <url>http://jroller.com/page/jcraze</url>
+            <organization>SpikeSource</organization>
+            <organizationUrl>http://spikesource.com/</organizationUrl>
+            <roles>
+                <role>Project Manager</role>
+            </roles>
+        </developer>
+        <developer>
+            <id></id>
+            <name>Sivasundaram</name>
+            <url>http://www.sivasundaram.com/</url>
+            <organization>Sella Synergy India Ltd.</organization>
+            <organizationUrl>http://sella.it/</organizationUrl>
+            <roles>
+                <role>Design Consultant</role>
+            </roles>
+        </developer>
+        <developer>
+            <id></id>
+            <name>Prakash C</name>
+            <url></url>
+            <organization>Sella Synergy India Ltd.</organization>
+            <organizationUrl>http://sella.it/</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id></id>
+            <name>Balasubramani S.D.</name>
+            <url></url>
+            <organization>Sella Synergy India Ltd.</organization>
+            <organizationUrl>http://sella.it/</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <pluginRepositories>
         <pluginRepository>
             <id>ibiblio-org</id>
