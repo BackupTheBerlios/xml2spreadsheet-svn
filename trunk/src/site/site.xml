@@ -18,6 +18,10 @@
       <item name="Forum" href="http://developer.berlios.de/forum/?group_id=6203"/>
       <item name="Downloads" href="download.html"/>
     </menu>
+    <menu name="Depends On">
+      <item name="POI" href="http://jakarta.apache.org/poi/"/>
+      <item name="JExcelAPI" href="http://jexcelapi.sourceforge.net/"/>
+    </menu>
     ${reports}
   </body>
 </project>

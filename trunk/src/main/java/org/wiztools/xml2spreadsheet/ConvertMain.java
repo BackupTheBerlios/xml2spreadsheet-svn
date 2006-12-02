@@ -58,12 +58,8 @@ public class ConvertMain {
         }
         
         try{
-            WorkBookCreator wbc = WorkBookCreatorFactory.getWorkBookCreator();
-            XML2XLSGenerator gen = new XML2XLSGenerator();
-            // Following line is capable of throwing Exception:
-            gen.parse((WorkBookGenerationHandler)wbc, new FileInputStream(arg[0]));
-            WorkBook workBook = wbc.getWorkBook();
-            workBook.write(new FileOutputStream(arg[1]));
+            XML2SpreadSheet.convert(new FileInputStream(arg[0]),
+                    new FileOutputStream(arg[1]));
         } catch(FileNotFoundException fnfe){
             print(System.err, "FileNotFoundException occurred!");
             fnfe.printStackTrace(System.err);
