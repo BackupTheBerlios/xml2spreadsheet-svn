@@ -33,8 +33,7 @@ public final class XML2SpreadSheet {
      *
      */
     public static void convert(InputStream in, OutputStream out) 
-            throws FileNotFoundException,
-            IOException,
+            throws IOException,
             XML2XLSFatalException{
         
         WorkBookCreator wbc = WorkBookCreatorFactory.getWorkBookCreator();
