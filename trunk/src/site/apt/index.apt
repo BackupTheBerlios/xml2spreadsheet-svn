@@ -68,8 +68,6 @@ XML2SpreadSheet
   try{
       XML2SpreadSheet.convert(java.io.InputStream in,
               java.io.OutputStream out);
-  } catch(FileNotFoundException fnfe){
-      ...
   } catch(IOException ioe){
       ...
   } catch(XML2XLSFatalException e){
