@@ -36,6 +36,11 @@ public final class XML2SpreadSheet {
             throws IOException,
             XML2XLSFatalException{
         
+        // Validate first before conversion
+        if(!XMLValidator.isValid(in)){
+            throw new XML2XLSFatalException("Invalid XML!");
+        }
+        
         WorkBookCreator wbc = WorkBookCreatorFactory.getWorkBookCreator();
         XML2XLSGenerator gen = new XML2XLSGenerator();
         // Following line is capable of throwing Exception:

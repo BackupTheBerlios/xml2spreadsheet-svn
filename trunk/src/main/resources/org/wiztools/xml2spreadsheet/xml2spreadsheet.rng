@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from xml2spreadsheet.dtd-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <choice>
+      <element name="boolean">
+        <ref name="T_boolean"/>
+      </element>
+      <element name="calendar">
+        <ref name="T_calendar"/>
+      </element>
+      <element name="cell">
+        <ref name="T_cell"/>
+      </element>
+      <element name="column-width">
+        <ref name="T_column-width"/>
+      </element>
+      <element name="date">
+        <ref name="T_date"/>
+      </element>
+      <element name="formula">
+        <ref name="T_formula"/>
+      </element>
+      <element name="merge">
+        <ref name="T_merge"/>
+      </element>
+      <element name="number">
+        <ref name="T_number"/>
+      </element>
+      <element name="row">
+        <ref name="T_row"/>
+      </element>
+      <element name="sheet">
+        <ref name="T_sheet"/>
+      </element>
+      <element name="text">
+        <ref name="T_text"/>
+      </element>
+      <element name="workbook">
+        <ref name="T_workbook"/>
+      </element>
+    </choice>
+  </start>
+<!--<!ELEMENT boolean (#PCDATA)>-->
+  <define name="T_boolean">
+    <text/>
+  </define>
+<!--<!ELEMENT calendar (#PCDATA)>-->
+  <define name="T_calendar">
+    <text/>
+<!--<!ATTLIST calendar format NMTOKEN #REQUIRED>-->
+    <attribute name="format">
+      <data type="NMTOKEN"/>
+    </attribute>
+  </define>
+<!--<!ELEMENT cell (boolean|calendar|date|formula|number|text)*>-->
+  <define name="T_cell">
+    <zeroOrMore>
+      <choice>
+        <element name="boolean">
+          <ref name="T_boolean"/>
+        </element>
+        <element name="calendar">
+          <ref name="T_calendar"/>
+        </element>
+        <element name="date">
+          <ref name="T_date"/>
+        </element>
+        <element name="formula">
+          <ref name="T_formula"/>
+        </element>
+        <element name="number">
+          <ref name="T_number"/>
+        </element>
+        <element name="text">
+          <ref name="T_text"/>
+        </element>
+      </choice>
+    </zeroOrMore>
+<!--<!ATTLIST cell placement NMTOKEN #REQUIRED>-->
+    <attribute name="placement">
+      <data type="NMTOKEN"/>
+    </attribute>
+<!--<!ATTLIST cell style CDATA #IMPLIED>-->
+    <optional>
+      <attribute name="style">
+        <text/>
+      </attribute>
+    </optional>
+  </define>
+<!--<!ELEMENT column-width EMPTY>-->
+  <define name="T_column-width">
+<!--<!ATTLIST column-width column NMTOKEN #REQUIRED>-->
+    <attribute name="column">
+      <data type="NMTOKEN"/>
+    </attribute>
+<!--<!ATTLIST column-width width NMTOKEN #REQUIRED>-->
+    <attribute name="width">
+      <data type="NMTOKEN"/>
+    </attribute>
+  </define>
+<!--<!ELEMENT date (#PCDATA)>-->
+  <define name="T_date">
+    <text/>
+<!--<!ATTLIST date format NMTOKEN #REQUIRED>-->
+    <attribute name="format">
+      <data type="NMTOKEN"/>
+    </attribute>
+  </define>
+<!--<!ELEMENT formula (#PCDATA)>-->
+  <define name="T_formula">
+    <text/>
+  </define>
+<!--<!ELEMENT merge EMPTY>-->
+  <define name="T_merge">
+<!--<!ATTLIST merge region CDATA #REQUIRED>-->
+    <attribute name="region">
+      <text/>
+    </attribute>
+  </define>
+<!--<!ELEMENT number (#PCDATA)>-->
+  <define name="T_number">
+    <text/>
+  </define>
+<!--<!ELEMENT row (cell+)>-->
+  <define name="T_row">
+    <oneOrMore>
+      <element name="cell">
+        <ref name="T_cell"/>
+      </element>
+    </oneOrMore>
+<!--<!ATTLIST row placement NMTOKEN #REQUIRED>-->
+    <attribute name="placement">
+      <data type="NMTOKEN"/>
+    </attribute>
+  </define>
+<!--<!ELEMENT sheet (column-width|merge|row)*>-->
+  <define name="T_sheet">
+    <zeroOrMore>
+      <choice>
+        <element name="column-width">
+          <ref name="T_column-width"/>
+        </element>
+        <element name="merge">
+          <ref name="T_merge"/>
+        </element>
+        <element name="row">
+          <ref name="T_row"/>
+        </element>
+      </choice>
+    </zeroOrMore>
+<!--<!ATTLIST sheet col-width CDATA #IMPLIED>-->
+    <optional>
+      <attribute name="col-width">
+        <text/>
+      </attribute>
+    </optional>
+<!--<!ATTLIST sheet name CDATA #IMPLIED>-->
+    <optional>
+      <attribute name="name">
+        <text/>
+      </attribute>
+    </optional>
+<!--<!ATTLIST sheet row-width CDATA #IMPLIED>-->
+    <optional>
+      <attribute name="row-width">
+        <text/>
+      </attribute>
+    </optional>
+  </define>
+<!--<!ELEMENT text (#PCDATA)>-->
+  <define name="T_text">
+    <text/>
+  </define>
+<!--<!ELEMENT workbook (sheet+)>-->
+  <define name="T_workbook">
+    <oneOrMore>
+      <element name="sheet">
+        <ref name="T_sheet"/>
+      </element>
+    </oneOrMore>
+  </define>
+</grammar>
