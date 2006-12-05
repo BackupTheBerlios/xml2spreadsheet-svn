@@ -134,12 +134,6 @@
             <scope>compile</scope>
         </dependency>
         
-        <dependency>
-            <groupId>thaiopensource</groupId>
-            <artifactId>jing</artifactId>
-            <version>20030619</version>
-        </dependency>
-        
     </dependencies>
     
     <build>

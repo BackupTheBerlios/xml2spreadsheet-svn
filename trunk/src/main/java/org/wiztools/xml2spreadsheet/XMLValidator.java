@@ -33,15 +33,20 @@ class XMLValidator {
     }
     
     private static void init(){
-        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.RELAXNG_NS_URI);
+        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        System.out.println("Factory: "+factory);
         ClassLoader cl = XMLValidator.class.getClassLoader();
-        URL schema_url = cl.getResource("org/wiztools/xml2spreadsheet/xml2spreadsheet.rng");
+        URL schema_url = cl.getResource("org/wiztools/xml2spreadsheet/xml2spreadsheet.xsd");
+        System.out.println("URL: "+schema_url);
         Schema schema = null;
         try{
             schema = factory.newSchema(schema_url);
+            System.out.println("Schema: "+schema);
             validator = schema.newValidator();
+            System.out.println("Validator: "+validator);
         }
         catch(SAXException se){
+            se.printStackTrace();
             assert true:"The DTD bundled is not valid!";
         }
     }
@@ -57,7 +62,10 @@ class XMLValidator {
         catch(SAXException se){
             return false;
         }
+        finally{
+            is.close();
+        }
         return true;
     }
     
-}
+ }
