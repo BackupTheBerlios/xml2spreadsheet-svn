@@ -65,12 +65,11 @@ public final class POIStyleCreator {
             String key = tarr[0];
             String val = tarr[1];
             if("background".equals(key)){
+                style.setFillPattern(HSSFCellStyle.FINE_DOTS);
                 style.setFillBackgroundColor(getColor(val));
-                //style.setFillForegroundColor(getColor(val));
             }
             else if("color".equals(key)){
                 HSSFFont font = workBook.createFont();
-                // font.setColor(HSSFFont.COLOR_RED);
                 font.setColor(getColor(val));
                 style.setFont(font);
             }
