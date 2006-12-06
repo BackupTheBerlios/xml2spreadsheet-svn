@@ -62,7 +62,7 @@ public class ConvertMainTest extends TestCase {
                 String[] str_arr = getFolder(file, "poi");
                 if(str_arr[1].matches(".*\\.xml.xls")){
                     System.out.println("== Running For POI: " + str_arr[1] + " ==");
-                    ConvertMain.main(str_arr);
+                    ConvertMain.main(new String[]{"-i", str_arr[0], "-o", str_arr[1]});
                 }
             }
             System.setProperty("xml2xls.impl", "jxl");
@@ -70,7 +70,7 @@ public class ConvertMainTest extends TestCase {
                 String[] str_arr = getFolder(file, "jxl");
                 if(str_arr[1].matches(".*\\.xml.xls")){
                     System.out.println("== Running For JXL: " + str_arr[1] + " ==");
-                    ConvertMain.main(str_arr);
+                    ConvertMain.main(new String[]{"-i", str_arr[0], "-o", str_arr[1]});
                 }
             }
         }
