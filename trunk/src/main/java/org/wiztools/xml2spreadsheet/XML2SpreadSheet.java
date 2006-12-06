@@ -19,13 +19,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import org.wiztools.xml2spreadsheet.exception.XML2XLSFatalException;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author subhash
  */
 public final class XML2SpreadSheet {
+    
+    private static final Logger LOG = 
+            Logger.getLogger(XML2SpreadSheet.class.getName());
     
     /** Creates a new instance of XML2SpreadSheet */
     private XML2SpreadSheet() {
@@ -57,11 +62,14 @@ public final class XML2SpreadSheet {
         ByteArrayInputStream b_in = new ByteArrayInputStream(arr);
         
         // Validate first before conversion
-        if(!XMLValidator.isValid(b_in)){
-            throw new XML2XLSFatalException("Invalid XML!");
+        try{
+            XMLValidator.checkValidity(b_in);
+        }
+        catch(SAXException se){
+            throw new XML2XLSFatalException("Invalid XML: " + se.getMessage());
         }
         
-        System.out.println("~~~~~~~~~~Successfully validated XML~~~~~~~");
+        LOG.info("~~~~~~~~~~Successfully validated XML~~~~~~~");
         
         b_in.reset();
         

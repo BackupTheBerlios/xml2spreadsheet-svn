@@ -12,6 +12,7 @@ package org.wiztools.xml2spreadsheet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -26,6 +27,9 @@ import org.xml.sax.SAXException;
  */
 class XMLValidator {
     
+    private static final Logger LOG = 
+            Logger.getLogger(XMLValidator.class.getName());
+    
     private static Validator validator;
     
     /** Creates a new instance of XMLValidator */
@@ -34,38 +38,30 @@ class XMLValidator {
     
     private static void init(){
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        System.out.println("Factory: "+factory);
+        LOG.info("Factory: "+factory);
         ClassLoader cl = XMLValidator.class.getClassLoader();
         URL schema_url = cl.getResource("org/wiztools/xml2spreadsheet/xml2spreadsheet.xsd");
-        System.out.println("URL: "+schema_url);
+        LOG.info("URL: "+schema_url);
         Schema schema = null;
         try{
             schema = factory.newSchema(schema_url);
-            System.out.println("Schema: "+schema);
+            LOG.info("Schema: "+schema);
             validator = schema.newValidator();
-            System.out.println("Validator: "+validator);
+            LOG.info("Validator: "+validator);
         }
         catch(SAXException se){
-            se.printStackTrace();
+            LOG.throwing(XMLValidator.class.getName(), "init", se);
             assert true:"The DTD bundled is not valid!";
         }
     }
     
-    public static boolean isValid(InputStream is) throws IOException{
+    public static void checkValidity(InputStream is) throws 
+            IOException, SAXException{
         if(validator == null){
             init();
         }
         Source source = new StreamSource(is);
-        try{
-            validator.validate(source);
-        }
-        catch(SAXException se){
-            return false;
-        }
-        finally{
-            is.close();
-        }
-        return true;
+        validator.validate(source);
     }
     
  }

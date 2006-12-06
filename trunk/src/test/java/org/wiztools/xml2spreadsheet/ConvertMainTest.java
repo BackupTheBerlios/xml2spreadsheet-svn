@@ -8,6 +8,7 @@
 package org.wiztools.xml2spreadsheet;
 
 import java.io.File;
+import java.util.logging.Logger;
 import junit.framework.*;
 import org.wiztools.xml2spreadsheet.exception.XML2XLSFatalException;
 import org.wiztools.xml2spreadsheet.poiimpl.POIColor;
@@ -23,6 +24,9 @@ import java.util.Collection;
  * @author subhash
  */
 public class ConvertMainTest extends TestCase {
+    
+    private static final Logger LOG = 
+            Logger.getLogger(ConvertMainTest.class.getName());
     
     public ConvertMainTest(String testName) {
         super(testName);
@@ -47,7 +51,7 @@ public class ConvertMainTest extends TestCase {
      * Test of main method, of class org.wiztools.xml2spreadsheet.ConvertMain.
      */
     public void testMain() {
-        System.out.println("main");
+        LOG.info("main");
         
         try{
             File dir = new File("src/test/resources");
