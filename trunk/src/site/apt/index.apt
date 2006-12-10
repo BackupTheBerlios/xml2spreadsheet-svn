@@ -54,11 +54,11 @@ XML2SpreadSheet
 
   In the command-line, give this command:
 
-  $ java -jar -Dxml2xls.impl=jxl XML2SpreadSheet-VER-jar-with-dependencies.jar jxl.xml out.xls
+  $ java -jar -Dxml2xls.impl=jxl XML2SpreadSheet-VER-jar-with-dependencies.jar -i jxl.xml -o out.xls
 
   or
 
-  $ java -jar -Dxml2xls.impl=poi XML2SpreadSheet-VER-jar-with-dependencies.jar  poi.xml out.xls
+  $ java -jar -Dxml2xls.impl=poi XML2SpreadSheet-VER-jar-with-dependencies.jar -i poi.xml -o out.xls
 
 * API Usage
 
