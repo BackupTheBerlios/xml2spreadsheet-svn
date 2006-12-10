@@ -6,7 +6,9 @@
 
 package org.wiztools.xml2spreadsheet;
 
+import java.io.InputStream;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.GnuParser;
@@ -30,7 +32,8 @@ import org.xml.sax.SAXException;
  * @author subhash
  */
 public class ConvertMain {
-    
+
+    private static final Logger LOG = Logger.getLogger(ConvertMain.class.getName());
     private static ResourceBundle rb = ResourceBundle.getBundle("org.wiztools.xml2spreadsheet.message");
     
     private static void print(PrintStream ps, String msg){
@@ -95,8 +98,20 @@ public class ConvertMain {
                 }
             }
             else if(line.hasOption("t")){
-                // TODO
-                System.out.println("Yet to be implemented!");
+                ClassLoader cl = ConvertMain.class.getClassLoader();
+                try{
+                    InputStream is = cl.getResourceAsStream("org/wiztools/xml2spreadsheet/template.xml");
+                    int c;
+                    while((c = is.read())!=-1){
+                        System.out.print((char)c);
+                    }
+                    System.out.println();
+                    is.close();
+                }
+                catch(IOException ioe){
+                    LOG.throwing("ConvertMain", "main", ioe);
+                    System.err.println("Template XML not bundled in Jar!");
+                }
             }
             else if(line.hasOption("colors")){
                 print(System.out, rb.getString("msg.The_colors_supported"));
