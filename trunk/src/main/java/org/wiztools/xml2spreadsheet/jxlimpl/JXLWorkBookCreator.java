@@ -66,7 +66,8 @@ public class JXLWorkBookCreator implements WorkBookGenerationHandler{
             name = attributes.get("name");
         }
         if(name == null){
-            name = "Sheet " + (sheetCount + 1);
+            // This name format is compatible with what POI generates
+            name = "Sheet" + sheetCount;
         }
         this.sheet = workBook.createSheet(name, sheetCount);
         sheetCount++;

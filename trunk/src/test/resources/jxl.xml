@@ -29,8 +29,8 @@
             </cell>
         </row>
         <row placement="5">
-            <cell placement="2" style="border: dotted; color:grey_50_percent">
-                <formula>sum(C3:C5)</formula>
+            <cell placement="2">
+                <formula>C3+C4+C5</formula>
             </cell>
         </row>
     </sheet>
